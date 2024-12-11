@@ -157,16 +157,19 @@ body{
 /* ======================================= CARDS - GENERIC */
 .card{
     border-radius: 0.6rem;
-    background: #e0e0e0;
+    background: #e5e5ee;
     cursor: pointer;
     padding: 0.5rem;
+    box-shadow: 2px 2px 2px #bebebe, -2px -2px 2px #ffffff;
+
 }
 
 
-/* .card:hover{
-    filter: invert();
-    box-shadow: none;
-} */
+/* .card:hover{ */
+    /* filter: invert(); */
+    /* box-shadow: none; */
+    /* background-color: rgb(168, 62, 255); */
+/* } */
 
 /* ======================================= CARDS - SPECIFIC */
 .card.span{
@@ -188,4 +191,16 @@ body{
     background-color: transparent;
     text-align: center;
     font-family: "Anton";
+}
+
+/* ======================================= CARDS - SPECIFIC-II */
+/* ===================== PLAYER */
+.player{
+    display: flex;
+    gap: 1rem;
+}
+/* ===================== EVENTS */
+
+.event .svg-logo{
+    scale: 50%;
 }
