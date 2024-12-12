@@ -195,12 +195,50 @@ body{
 
 /* ======================================= CARDS - SPECIFIC-II */
 /* ===================== PLAYER */
-.player{
+.card.player{
     display: flex;
     gap: 1rem;
 }
 /* ===================== EVENTS */
+.card.event{
+    height: 6rem;
+    display: flex;
+}
 
-.event .svg-logo{
-    scale: 50%;
+
+.card.event .svg-logo{
+    height: 100%;
+    scale: 60%;
+    opacity: 80%;
+    animation: none;
+}
+
+.card.event .text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    opacity: 80%;
+}
+
+.card.event .text .title{
+    font-family: "Lilita One";
+    font-size: 1.5rem;
+}
+.card.event .text .msg{
+    font-family: "Poppins";
+    font-size: 0.8rem;
+}
+
+/* ==== BREATING EFFECT === */
+@keyframes breathing {
+    0%{transform: scale(1);}
+    50%{transform: scale(1.2);}
+    100%{transform: scale(1);}
+}
+/* ==== BREATING EFFECT === */
+
+.card.event:hover .svg-logo{
+    animation: breathing 1s infinite ease-in-out;
 }
