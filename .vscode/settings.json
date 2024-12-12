@@ -1,4 +1,6 @@
 {
-    "scm.compactFolders": false,
-    "explorer.compactFolders": false
+    "explorer.compactFolders": false,
+    "files.exclude": {
+        "**/__pycache__": true
+    }
 }
