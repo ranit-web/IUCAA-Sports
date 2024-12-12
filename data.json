@@ -1,19 +1,40 @@
 {
     "events": [
         {
-            "name": "badminton"
+            "name": "badminton",
+            "participants": [
+                {
+                    "name": "Player One",
+                    "gender": "Male",
+                    "age": 21
+                },
+                {
+                    "name": "Player One",
+                    "gender": "Male",
+                    "age": null
+                },
+                {
+                    "name": "Player Three",
+                    "gender": "Male",
+                    "age": null
+                }
+            ]
         },
         {
-            "name": "table tennis"
+            "name": "table tennis",
+            "participants": []
         },
         {
-            "name": "chess"
+            "name": "chess",
+            "participants": []
         },
         {
-            "name": "marathon"
+            "name": "marathon",
+            "participants": []
         },
         {
-            "name": "cricket"
+            "name": "cricket",
+            "participants": []
         }
     ]
 }
