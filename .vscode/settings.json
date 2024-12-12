@@ -1,6 +1,6 @@
 {
     "explorer.compactFolders": false,
     "files.exclude": {
-        "**/__pycache__": true
+        // "**/__pycache__": true
     }
 }
