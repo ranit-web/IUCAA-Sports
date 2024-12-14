@@ -1,40 +1,37 @@
 {
-    "events": [
-        {
-            "name": "badminton",
-            "participants": [
-                {
-                    "name": "Player One",
-                    "gender": "Male",
-                    "age": 21
-                },
-                {
-                    "name": "Player One",
-                    "gender": "Male",
-                    "age": null
-                },
-                {
-                    "name": "Player Three",
-                    "gender": "Male",
-                    "age": null
-                }
-            ]
-        },
-        {
-            "name": "table tennis",
-            "participants": []
-        },
-        {
-            "name": "chess",
-            "participants": []
-        },
-        {
-            "name": "marathon",
-            "participants": []
-        },
-        {
-            "name": "cricket",
-            "participants": []
+    "events": {
+        "name": "badminton",
+        "categories": {
+            "mens-single": [],
+            "womens-single": [],
+            "mens-double": [
+                [
+                    {
+                        "name": "Ranit",
+                        "gender": "Male",
+                        "age": 26
+                    },
+                    {
+                        "name": "Anirban",
+                        "gender": "Male",
+                        "age": 25
+                    }
+                ],
+                [
+                    {
+                        "name": "Ranit",
+                        "gender": "Male",
+                        "age": 26
+                    },
+                    {
+                        "name": "Anirban",
+                        "gender": "Male",
+                        "age": 25
+                    }
+                ]
+            ],
+            "womens-double": [],
+            "mixed-double": []
         }
-    ]
+    }
 }
