@@ -7,16 +7,6 @@
                     "name": "Player One",
                     "gender": "Male",
                     "age": 21
-                },
-                {
-                    "name": "Player One",
-                    "gender": "Male",
-                    "age": null
-                },
-                {
-                    "name": "Player Three",
-                    "gender": "Male",
-                    "age": null
                 }
             ]
         },

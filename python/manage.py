@@ -13,5 +13,6 @@ events = [badminton,table_tennis,chess,marathon,cricket]
 # =========
 
 badminton.AddPlayer("Player One","Male",21)
-badminton.AddPlayer("Player One","Male")
-badminton.AddPlayer("Player Three","Male")
+
+
+
