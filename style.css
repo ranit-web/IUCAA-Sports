@@ -11,6 +11,8 @@ html,body{
     height: 100%;
 }
 
+html { -webkit-tap-highlight-color: transparent; }
+
 /* ======================================= ROOT LAYOUT */
 body{
     display: flex;
