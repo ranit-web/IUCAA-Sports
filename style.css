@@ -152,6 +152,10 @@ body{
     box-shadow: 2px 2px 2px #bebebe, -2px -2px 2px #ffffff;
 }
 
+.card.noneo{
+    box-shadow:none
+}
+
 .card.text{
     box-shadow: none;
     background-color: transparent;
