@@ -1,3 +1,31 @@
+// ====================================
+// TAB MANAGER
+// ====================================
+class TabManger{
+    constructor(){
+        this.target = document.getElementsByClassName("tabbar")[0]
+    }
+
+    clear(){
+        this.target.innerHTML = "";
+    }
+
+    add_tab(label="Tab",iconname="crop_square",callback_fun=null){
+        this.target.innerHTML +=`
+            <div class="tab" onclick="${callback_fun?callback_fun.name:"undefined"}(this)">
+                <div class="pill"></div>
+                <div class="icon material-symbols-outlined">${iconname}</div>
+                <div class="label">${label}</div>
+            </div>
+        `
+    }
+}
+tabbar = new TabManger();
+
+
+// ====================================
+// WALL MANAGER
+// ====================================
 class WallManager{
     constructor(){
         this.target = document.getElementsByClassName("wall")[0]
@@ -15,9 +43,9 @@ class WallManager{
         this.target.innerHTML += `<div class="card span text">${text}</div>`
     }
 
-    add_card_event(event_title,event_msg,logo_path){
+    add_card_event(event_title,event_msg,logo_path,callback_fun=null){
         this.target.innerHTML +=`
-            <div class="card event">
+            <div class="card event" onclick="${callback_fun?callback_fun.name:"undefined"}(this)">
                 <img class="svg-logo" src="${logo_path}"></svg>
                 <div class="text">
                     <div class="title">${event_title} ></div>
@@ -56,73 +84,107 @@ class WallManager{
     }
 
 }
-
 wall = new WallManager()
 
 
-// Tab Navigation
-const tabs = document.querySelectorAll(".tab");
-const headtext = document.querySelectorAll(".head-text")[0];
-var page_depth=0;
-
-
-const tabLabelToCallbackMap = {
-    Home: onHomeClick,
-    Events: onEventsClick,
-    About: onAboutClick,
-};
-
-
-function onTabClick(event){
-    // Pill effect works through css when activated
-    tabs.forEach(tab=>{
-        tab.classList.remove("active");
-    });
-    event.currentTarget.classList.add("active");
-    
-    // Navigation
-    tab_label=event.currentTarget.getElementsByClassName("label")[0].innerText;
-    headtext.innerHTML=tab_label
-    
-    // Callback
-    tabLabelToCallbackMap[tab_label]();
-
+// ====================================
+// PAGE LANDING
+// ====================================
+window.onload=function(){
+    onHomeLand();
 }
 
-tabs.forEach(tab=>{
-    tab.addEventListener("click",onTabClick)
-});
+function SetDefaultTab(number){
+    const tabs = document.querySelectorAll(".tab");
+    tabs[number].click();
+}
 
+function onHomeLand(){
+    tabbar.clear();
+    tabbar.add_tab("Recents","featured_play_list",onRecentsClick);
+    tabbar.add_tab("Events","local_activity",onEventsClick);
+    SetDefaultTab(1);
+}
 
-// ==================
-// Default Tab - Link it to active tag
-window.onload=function(){onHomeClick();}
+function onBadmintonLand(){
+    tabbar.clear();
+    tabbar.add_tab("Players","groups");
+    tabbar.add_tab("Matches","sports");
+    tabbar.add_tab("Points","leaderboard")
+    SetDefaultTab(0);
+}
 
+// ====================================
+// TAB NAVIGATION
+// ====================================
 
-function onHomeClick(){
-    // wall.clear();
+function cleanActiveTabs(){
+    const tabs = document.querySelectorAll(".tab");
+    tabs.forEach(tab=>{
+                tab.classList.remove("active");
+            });
+}
+
+function defaultTabClick(sender){
+    cleanActiveTabs();
+    sender.classList.add("active");
+}
+
+function onRecentsClick(sender){
+    defaultTabClick(sender);
+    wall.clear();
     wall.add_section("Todays Events");
     wall.add_text("This section is under development.");
     wall.add_section("Yesterday Events");
     wall.add_text("This section is under development.");
-    // wall.add_card_participant_single("Roger Penrose","male")
-    // wall.add_card_participant_double(["Roger Penrose","Marie Curie"],["male","female"])
+
 }
 
-function onAboutClick(){
+function onEventsClick(sender){
+    defaultTabClick(sender);
     wall.clear();
-}
-
-
-function onEventsClick(){
-    wall.clear();
-    wall.add_card_event("Badminton","Starts from 2nd Jan","./media/badminton.svg");
+    wall.add_card_event("Badminton","Starts from 2nd Jan","./media/badminton.svg",onBadmintonLand);
     wall.add_card_event("Table Tennis","Starts from 2nd Jan","./media/table_tennis.svg");
     wall.add_card_event("Marathon","Starts from 2nd Jan","./media/marathon.svg");
     wall.add_card_event("Chess","Starts from 2nd Jan","./media/chess_queen.svg");
     wall.add_card_event("Cricket","Starts from 2nd Jan","./media/cricket.svg");
-
 }
+
+
+
+
+// ===============================================================
+
+
+
+
+function onHelpClick(){
+    wall.clear();
+    cleanActiveTabs();
+    wall.add_section("About")
+    wall.add_text("This website is a student-led initiative created to provide information about sports events at <b>IUCAA</b>. It is not officially associated with or endorsed by the institute administration. The content and updates shared on this platform are independently managed and reflect the efforts of students, not the official policies or communications of the institute.")
+    
+    wall.add_section("Support")
+    
+    wall.add_text(
+        `For any changes related to event-specific details such as adding players, change event schedules or match partners, kindly contact the event organizers as listed below.
+        <br/>
+        <br/>
+        <li><b>Badminton</b> : Sourav Das & Ranit Behera</li>
+        <li><b>Table Tennis</b> : First Last & First Last</li>
+        <li><b>Chess</b> : First Last & First Last</li>
+        <li><b>Marathon</b> : First Last & First Last</li>
+        <li><b>Cricket</b> : First Last & First Last</li>
+        `
+    )
+    
+    wall.add_section("Feature Request")
+    wall.add_text("If you wish to suggest new features or provide additional information, please reach out to the developers, <b>Ranit Behera</b> and <b>Anirban Kopty</b>, for assistance.")
+    
+}
+
+
+
 
 
 
