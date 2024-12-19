@@ -1,3 +1,9 @@
+// TODO: Alternate
+function passfun(sender){
+
+}
+
+
 // ====================================
 // TAB MANAGER
 // ====================================
@@ -12,7 +18,7 @@ class TabManger{
 
     add_tab(label="Tab",iconname="crop_square",callback_fun=null){
         this.target.innerHTML +=`
-            <div class="tab" onclick="${callback_fun?callback_fun.name:"undefined"}(this)">
+            <div class="tab" onclick="${callback_fun?callback_fun.name:"passfun"}(this)">
                 <div class="pill"></div>
                 <div class="icon material-symbols-outlined">${iconname}</div>
                 <div class="label">${label}</div>
@@ -45,7 +51,7 @@ class WallManager{
 
     add_card_event(event_title,event_msg,logo_path,callback_fun=null){
         this.target.innerHTML +=`
-            <div class="card event" onclick="${callback_fun?callback_fun.name:"undefined"}(this)">
+            <div class="card event" onclick="${callback_fun?callback_fun.name:"passfun"}(this)">
                 <img class="svg-logo" src="${logo_path}"></svg>
                 <div class="text">
                     <div class="title">${event_title} ></div>
@@ -88,51 +94,55 @@ wall = new WallManager()
 
 
 // ====================================
-// PAGE LANDING
+// PAGE NAVIGATION
 // ====================================
 window.onload=function(){
     onHomeLand();
 }
 
-function SetDefaultTab(number){
-    const tabs = document.querySelectorAll(".tab");
-    tabs[number].click();
-}
+back_btn=document.querySelector(".btn-back")
 
 function onHomeLand(){
     tabbar.clear();
-    tabbar.add_tab("Recents","featured_play_list",onRecentsClick);
-    tabbar.add_tab("Events","local_activity",onEventsClick);
+    tabbar.add_tab("Recents","featured_play_list",onHome_Recents_Click);
+    tabbar.add_tab("Events","local_activity",onHome_Events_Click);
     SetDefaultTab(1);
+    back_btn.classList.add("hide");
 }
 
 function onBadmintonLand(){
     tabbar.clear();
-    tabbar.add_tab("Players","groups");
-    tabbar.add_tab("Matches","sports");
-    tabbar.add_tab("Points","leaderboard")
+    tabbar.add_tab("Players","groups",onBadminton_Player_Click);
+    tabbar.add_tab("Matches","sports",onBadminton_Matches_Click);
+    tabbar.add_tab("Points","leaderboard",onBadminton_Points_Click)
     SetDefaultTab(0);
+    back_btn.classList.remove("hide");
 }
 
 // ====================================
 // TAB NAVIGATION
 // ====================================
 
+function SetDefaultTab(number){
+    const tabs = document.querySelectorAll(".tab");
+    tabs[number].click();
+}
+
 function cleanActiveTabs(){
     const tabs = document.querySelectorAll(".tab");
     tabs.forEach(tab=>{
                 tab.classList.remove("active");
-            });
+    });
 }
 
-function defaultTabClick(sender){
+function defaultTab_Click(sender){
     cleanActiveTabs();
     sender.classList.add("active");
+    wall.clear();
 }
 
-function onRecentsClick(sender){
-    defaultTabClick(sender);
-    wall.clear();
+function onHome_Recents_Click(sender){
+    defaultTab_Click(sender);
     wall.add_section("Todays Events");
     wall.add_text("This section is under development.");
     wall.add_section("Yesterday Events");
@@ -140,9 +150,8 @@ function onRecentsClick(sender){
 
 }
 
-function onEventsClick(sender){
-    defaultTabClick(sender);
-    wall.clear();
+function onHome_Events_Click(sender){
+    defaultTab_Click(sender);
     wall.add_card_event("Badminton","Starts from 2nd Jan","./media/badminton.svg",onBadmintonLand);
     wall.add_card_event("Table Tennis","Starts from 2nd Jan","./media/table_tennis.svg");
     wall.add_card_event("Marathon","Starts from 2nd Jan","./media/marathon.svg");
@@ -151,14 +160,7 @@ function onEventsClick(sender){
 }
 
 
-
-
-// ===============================================================
-
-
-
-
-function onHelpClick(){
+function onHelp_Click(){
     wall.clear();
     cleanActiveTabs();
     wall.add_section("About")
@@ -184,9 +186,20 @@ function onHelpClick(){
 }
 
 
+function onBadminton_Player_Click(sender){
+    defaultTab_Click(sender);
+    wall.add_card_participant_single("Ranit Behera","Male")
+    wall.add_card_participant_single("Ranit Behera","Male")
+    wall.add_card_participant_single("Ranit Behera","Female")
+}
 
+function onBadminton_Matches_Click(sender){
+    defaultTab_Click(sender);
+}
 
-
+function onBadminton_Points_Click(sender){
+    defaultTab_Click(sender);
+}
 
 
 

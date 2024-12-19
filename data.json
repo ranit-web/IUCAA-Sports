@@ -2,31 +2,47 @@
     "events": {
         "name": "badminton",
         "categories": {
-            "mens-single": [],
+            "mens-single": [
+                {
+                    "name": "Ranit",
+                    "gender": "Male",
+                    "age": 26,
+                    "phone": null,
+                    "email": null
+                }
+            ],
             "womens-single": [],
             "mens-double": [
                 [
                     {
                         "name": "Ranit",
                         "gender": "Male",
-                        "age": 26
+                        "age": 26,
+                        "phone": null,
+                        "email": null
                     },
                     {
                         "name": "Anirban",
                         "gender": "Male",
-                        "age": 25
+                        "age": 25,
+                        "phone": null,
+                        "email": null
                     }
                 ],
                 [
                     {
                         "name": "Ranit",
                         "gender": "Male",
-                        "age": 26
+                        "age": 26,
+                        "phone": null,
+                        "email": null
                     },
                     {
                         "name": "Anirban",
                         "gender": "Male",
-                        "age": 25
+                        "age": 25,
+                        "phone": null,
+                        "email": null
                     }
                 ]
             ],

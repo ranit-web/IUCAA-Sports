@@ -12,18 +12,20 @@ class Participant:
                  age:int,
                  phone:int=None,
                  email:str=None):
-        self.name=name
-        self.gender=gender
-        self.age=age
-        self.phone=phone
-        self.email=email
+        self.name   = name
+        self.gender = gender
+        self.age    = age
+        self.phone  = phone
+        self.email  = email
         # self.UID=self.genUID()
     
     def GetDict(self):
         pldict={}
-        pldict["name"]=self.name
-        pldict["gender"]=self.gender
-        pldict["age"]=self.age
+        pldict["name"]   = self.name
+        pldict["gender"] = self.gender
+        pldict["age"]    = self.age
+        pldict["phone"]  = self.phone
+        pldict["email"]  = self.email
         return pldict
     
     # def genUID(self):
@@ -36,15 +38,23 @@ class Participant:
 
 class Match:
     _match_no=0
-    def __init__(self, date:str, time:str, event, category, participants:list[Participant], refree:str=None):
+    def __init__(self, event:events, category:str, date:str, time:str, participants:list[Participant], refree:str=None):
+        self._event_name = event
+        self.category = category
         self.date = date
         self.time = time
-        self.event = event
-        self.category = category
         self.participants = participants
         self.refree = refree
         Match._match_no += 1
 
+    def GetDict(self):
+        matchdict={}
+        matchdict["category"] = self.category
+        matchdict["date"]     = self.date
+        matchdict["time"]     = self.time
+        matchdict["participants"] = [p.GetDict() for p in self.participants]
+        matchdict["refree"]   = self.refree
+        return matchdict
 
 
 class Badminton:
@@ -101,6 +111,8 @@ class Badminton:
         categories["womens-double"] = [[team[0].GetDict(),team[1].GetDict()] for team in self.pl_womens_dbl]
         categories["mixed-double"]  = [[team[0].GetDict(),team[1].GetDict()] for team in self.pl_mixed_dbl]
         evdict["categories"] = categories
+
+
         
 
         return evdict
