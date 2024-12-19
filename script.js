@@ -28,6 +28,33 @@ class WallManager{
         `
     }
 
+    add_card_participant_single(name,gender){
+        let logo = (gender.toLowerCase()=="male")?"face":"face_3";
+        this.target.innerHTML +=`
+            <div class="card participant">
+                <div class="material-symbols-outlined">${logo}</div>
+                <div>${name}</div>
+            </div>
+        `
+    }
+    
+    add_card_participant_double(names,genders){
+        let logo0 = (genders[0].toLowerCase()=="male")?"face":"face_3";
+        let logo1 = (genders[1].toLowerCase()=="male")?"face":"face_3";
+        this.target.innerHTML +=`
+            <div class="card participants">
+                <div class="member">
+                    <div class="material-symbols-outlined">${logo0}</div>
+                    <div>${names[0]}</div>
+                </div>
+                <div class="member">
+                    <div class="material-symbols-outlined">${logo1}</div>
+                    <div>${names[1]}</div>
+                </div>
+            </div>            
+        `
+    }
+
 }
 
 wall = new WallManager()
@@ -41,7 +68,8 @@ var page_depth=0;
 
 const tabLabelToCallbackMap = {
     Home: onHomeClick,
-    Events: onEventsClick
+    Events: onEventsClick,
+    About: onAboutClick,
 };
 
 
@@ -70,13 +98,21 @@ tabs.forEach(tab=>{
 // Default Tab - Link it to active tag
 window.onload=function(){onHomeClick();}
 
+
 function onHomeClick(){
-    wall.clear();
+    // wall.clear();
     wall.add_section("Todays Events");
     wall.add_text("This section is under development.");
     wall.add_section("Yesterday Events");
     wall.add_text("This section is under development.");
+    // wall.add_card_participant_single("Roger Penrose","male")
+    // wall.add_card_participant_double(["Roger Penrose","Marie Curie"],["male","female"])
 }
+
+function onAboutClick(){
+    wall.clear();
+}
+
 
 function onEventsClick(){
     wall.clear();
